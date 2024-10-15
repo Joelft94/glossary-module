@@ -1,0 +1,45 @@
+.glossary-term {
+    text-decoration: underline;
+    cursor: help;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .glossary-term .tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: #39ae3e;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  
+  .glossary-term:hover .tooltip,
+  .glossary-term .tooltip:hover {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .glossary-term .tooltip .read-more {
+    display: inline-block;
+    margin-left: 5px;
+    color: #ffff00;
+    text-decoration: underline;
+  }
+  
+  .glossary-term .tooltip .read-more:hover {
+    text-decoration: none;
+  }
+
+  .glossary-term .tooltip.active {
+    visibility: visible;
+    opacity: 1;
+  }

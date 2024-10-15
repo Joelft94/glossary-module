@@ -1,0 +1,10 @@
+glossary_tooltip:
+  js:
+    js/glossary_tooltip.js: {}
+  css:
+    theme:
+      css/glossary_tooltip.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

@@ -1,0 +1,29 @@
+<?php
+
+use Drupal\Core\Url;
+
+function _glossary_tooltip_get_terms() {
+  $terms = [];
+  $vocabulary = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('glossary');
+  foreach ($vocabulary as $term_data) {
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($term_data->tid);
+    $description = $term->getDescription();
+    $short_description = mb_substr($description, 0, 100);
+    $terms[$term->getName()] = [
+      'tid' => $term->id(),
+      'description' => $short_description,
+      'has_more' => (mb_strlen($description) > 100),
+      'url' => $term->toUrl()->toString(),
+    ];
+  }
+  return $terms;
+}
+
+function glossary_tooltip_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->getEntityTypeId() == 'node') {
+    $build['#attached']['library'][] = 'glossary_tooltip/glossary_tooltip';
+    $build['#attached']['drupalSettings']['glossaryTooltip'] = [
+      'terms' => _glossary_tooltip_get_terms(),
+    ];
+  }
+}

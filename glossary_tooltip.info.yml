@@ -1,0 +1,5 @@
+name: Glossary Tooltip
+type: module
+description: 'Highlights glossary terms in content and displays tooltips.'
+core_version_requirement: ^9
+package: Custom
